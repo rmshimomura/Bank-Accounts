@@ -1,0 +1,24 @@
+{
+  "name": "accountsproject",
+  "version": "1.0.0",
+  "description": "Simple project using basic node operations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmshimomura/Bank-Accounts.git"
+  },
+  "author": "Rodrigo Mimura Shimomura",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rmshimomura/Bank-Accounts/issues"
+  },
+  "homepage": "https://github.com/rmshimomura/Bank-Accounts#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.0"
+  }
+}
