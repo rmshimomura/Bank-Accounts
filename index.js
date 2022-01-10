@@ -43,7 +43,7 @@ function operation() {
                     break
 
                 case 'Withdraw':
-
+                    withdraw()
                     break
 
                 case 'Exit':
@@ -78,6 +78,11 @@ function buildAccount() {
         .then((answers) => {
 
             const accountName = answers["accountName"]
+
+            if(!accountName) {
+                console.log(chalk.bgRed.black("An error occurred, please try again later"))
+                return buildAccount()
+            }
 
             if (!fs.existsSync('accounts')) {
                 fs.mkdirSync('accounts')
@@ -125,7 +130,7 @@ function deposit() {
 
                     {
                         name: 'depositValue',
-                        message: 'Please enter the ammount of the deposit:'
+                        message: 'Please enter the amount of the deposit:'
                     },
 
                 ])
@@ -221,5 +226,77 @@ function getAccountBalance(){
 
     })
     .catch(err => console.log(err))
+
+}
+
+function withdraw() {
+    
+    inquirer.prompt([
+
+        {
+            name: 'accountName',
+            message: "What's your account name?"
+        }
+
+    ])
+    .then(answers => {
+
+        const accountName = answers['accountName']
+
+        if(!checkAccount(accountName)) {
+
+            return withdraw()
+
+        } else {
+
+            inquirer.prompt([
+
+                {
+                    name: 'withdrawValue',
+                    message: 'Please enter the amount of the withdraw:'
+                },
+
+            ])
+            .then(answer => {
+
+                const amount = answer['withdrawValue']
+                
+                removeAmount(accountName, parseFloat(amount))
+
+            })
+            .catch(err => { console.log(err) })
+
+        }
+
+    })
+    .catch(err => console.log(err))
+
+}
+
+function removeAmount(accountName, amount) {
+
+    const account = getAccount(accountName)
+
+    if(!amount) {
+
+        console.log(chalk.bgRed.black('An error occurred please try again later.'))
+        return withdraw()
+
+    }
+
+    if(account.balance < amount) {
+
+        console.log(chalk.bgRed.black('Value not available for withdraw.'))
+        return withdraw()
+
+    }
+
+    account.balance -= amount
+
+    fs.writeFileSync(`accounts/${accountName}.json`, JSON.stringify(account), err => {console.log(err)})
+
+    console.log(chalk.green.bold(`Withdraw of U$${amount} successfully made on account ${accountName}`))
+
+    operation()
 
 }
