@@ -35,7 +35,7 @@ function operation() {
                     break
 
                 case 'Check balance':
-
+                    getAccountBalance()
                     break
 
                 case 'Deposit':
@@ -186,5 +186,40 @@ function getAccount(accountName) {
     const accountJSON = fs.readFileSync(`accounts/${accountName}.json`, {encoding: 'utf8', flag: 'r'})
 
     return JSON.parse(accountJSON)
+
+}
+
+function getAccountBalance(){
+
+    inquirer.prompt([
+
+        {
+
+            name: 'accountName',
+            message: 'Please enter your account name'
+
+        }
+
+    ])
+    .then(answers => {
+
+        const accountName = answers['accountName']
+
+        if(!checkAccount(accountName)) {
+            
+            return getAccountBalance()
+
+        } else {
+
+            const accountData = getAccount(accountName)
+
+            console.log(chalk.bgBlue.black(`Hello, your account balance is U$${accountData.balance}`))
+
+            operation()
+
+        }
+
+    })
+    .catch(err => console.log(err))
 
 }
