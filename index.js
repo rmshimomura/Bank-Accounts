@@ -32,7 +32,23 @@ function operation () {
             case 'Create account':
                 createAccount()
             break
-            
+
+            case 'Check balance':
+                
+            break
+
+            case 'Deposit':
+
+            break
+
+            case 'Withdraw':
+
+            break
+
+            case 'Exit':
+                console.log(chalk.bgBlue.white('Thanks for using accounts service!'));
+                process.exit();
+            break
         }
 
     })
