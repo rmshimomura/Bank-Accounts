@@ -15,7 +15,7 @@ Accounts are stored on files on the `./accounts` directory, on `{account_name}.j
 - Check current balance
 - Deposit
 - Withdraw
+- Transference between accounts
 
 ### On development:
-- Transference between accounts
 - Interest earning based on current balance
