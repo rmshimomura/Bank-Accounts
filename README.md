@@ -11,11 +11,8 @@ Accounts are stored on files on the `./accounts` directory, on `{account_name}.j
 
 ## Available functions: 
 
-- Account creation
-- Check current balance
-- Deposit
-- Withdraw
-- Transference between accounts
-
-### On development:
-- Interest earning based on current balance
+[x] Account creation
+[x] Check current balance
+[x] Deposit
+[x] Withdraw
+[x] Transference between accounts
