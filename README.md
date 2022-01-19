@@ -2,6 +2,15 @@
 
 Bank accounts project using only the terminal
 
+## How to run the project
+
+Because this project is made to be used only on the terminal, simply type:
+
+```
+-> npm install 
+-> npm start
+```
+
 ## Node modules used:
 - `fs`
 - `Chalk (4.1.2)`
